@@ -4,7 +4,7 @@
 
 `src/index.html` 与 Stockcheck 独立页共用 myapp 的六入口页头：总览 `/`、待办 `/aim`、事项提醒 `/reminders`、日记 `/diaries`、个股监察 `/stockcheck/`、长期指标 `/buffett/`。当前页通过 `aria-current="page"` 标记。桌面横向菜单在 ≤800px 时切换为原生 details/summary 折叠面板；通用颜色、间距和断点规则见 Cloudflare 仓库 `docs/design/shared-navigation.md`。菜单只改页面壳，不影响指标数据或模型。编辑 `src/index.html` / `src/style.css` 后运行 `npm run build`，不要手改 dist 中哈希 CSS。
 
-当前入口名称为“长期指标”，地址仍 /buffett/。新增独立 SP500 月度两图与日经225预留位；新增公开前缀 sp500/fixed/（哈希历史片段）和 sp500/updates/{current,recent}.json。共享 fixed/ 另有哈希 sp500 与 sp500-app 脚本。缓存及只读边界与下文一致；详见 [长期指标说明](long-term-indicators.md)。下文原“两图”专指巴菲特区块。
+当前入口名称为“长期指标”，地址仍 /buffett/。三个指标区块分别提供两张图；新增标普和日经 225 的独立月频快照与模型。新增公开前缀 sp500/ 和 nikkei225/；脚本仍以共享 fixed/ 哈希发布。缓存及只读边界与下文一致；详见 [长期指标说明](long-term-indicators.md)。下文原“两图”专指巴菲特区块。
 
 `/buffett/` 为独立只读二级页，首页与全站导航可进入；`/buffett` 保留查询参数并 301 到带尾斜杠路径。顶部展示末期数值，正文两张全历史 SVG；浏览器用固定历史和近期数据生成图表和下载文件。
 
@@ -16,6 +16,8 @@
 | `fixed/history.<hash>.json` | 固定历史基础序列与原来源信息 | private, max-age=31536000, immutable |
 | `fixed/YYYYQn.<hash>.json` | 以后逐季转入的固定片段 | 同上 |
 | `fixed/{app,chart,series,freshness}.<hash>.js` | 界面、绘图、校验与日期代码 | 同上 |
+| `nikkei225/fixed/history.<hash>.json` | 完整月度历史价格输入 | 同上 |
+| `nikkei225/updates/current.json` | 日经模型、日期、来源和历史哈希 | private, max-age=0, must-revalidate |
 | `fixed/style.<hash>.css` | 样式 | 同上 |
 | `updates/recent.json` | 最近 8 季数字，当前 2024Q3—2026Q2 | private, max-age=0, must-revalidate |
 | `updates/current.json` | 模型、末值、日期和分区哈希 | 同上 |
@@ -38,6 +40,6 @@
 
 最近 8 季可在用户明确采纳后修订；每次保存独立小快照与前后值审计。新增季度把窗口外最早一季转入独立固定片段，老文件不改写。1952Q1—1996Q3 的估计值与比例以及完整原始 v1 基线永不覆盖。重估趋势可影响全历史派生值，不影响固定原始观测。
 
-本次真实数据仍截至 2026Q2，核验日期 2026-10-07。超过五个日历月（上海时间 2027-03-08 起）提示更新，构建和部署不重置日期。禁用 JavaScript 时页面提示需要脚本，并提供可直接读取的模型和日期 JSON。
+更新提醒按指标独立计算：巴菲特 6 个月、期限前 30 天起提醒；标普和日经每 2 个月、期限前 14 天起提醒。期限到达日及之后提醒，提醒窗口之外隐藏状态栏；时区为 Asia/Shanghai。构建和部署不重置数据日期。禁用 JavaScript 时页面显示对应维护频率提示。
 
 不新增 API、D1、KV、后台任务或自动数据抓取。Git 同步和正式部署分开，来源项目不自动部署 Cloudflare。

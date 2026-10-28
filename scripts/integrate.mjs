@@ -30,7 +30,7 @@ modify('src/pages/home.html',text=>{
   return text.replace(marker,'\t\t<a class="portal buffett-portal" href="/buffett/"><span class="icon" aria-hidden="true">≈</span><h2>长期指标</h2><p class="muted">查看巴菲特、标普 500 的长期标准与去趋势图。</p><span class="enter">进入长期指标 →</span></a>\n'+marker);
 });
 modify('src/pages/layout.html',text=>text.includes('href="/buffett/"')?text.replace('<a href="/buffett/">巴菲特指数</a>','<a href="/buffett/">长期指标</a>'):text.replace('<a href="/stockcheck/">个股监察</a>','<a href="/stockcheck/">个股监察</a>\n\t\t\t\t<a href="/buffett/">长期指标</a>'));
-const section='\n\n## 巴菲特指数集成\n\n独立只读二级页 `/buffett/`，首页与全站导航可进入；顶部展示末期标准指数、去趋势百分比、趋势与 Z-score。快照超过五个日历月未更新时提示更新（Asia/Shanghai）。\n\n来源仓库：https://github.com/cj2cf99/BuffettChart 。更新在来源项目运行 `npm run build`、`npm test`、`npm run integrate -- <myapp路径>`，然后在 myapp 执行 `npm test`、`npm run check`。详见 [接入说明](buffett/README.md)。不新增 API、数据库表、KV 键或定时任务。\n';
+const section='\n\n## 长期指标集成\n\n独立只读二级页 `/buffett/`，包含巴菲特、标普500与日经225各自的标准和去趋势图。巴菲特每6个月更新、期限前30天提示；标普和日经每2个月更新、期限前14天提示。状态栏只在临近期限、到期/逾期或读取失败时显示（Asia/Shanghai）。\n\n来源仓库：https://github.com/cj2cf99/BuffettChart 。更新在来源项目运行 `npm run build`、`npm test`、`npm run integrate -- <myapp路径>`，然后在 myapp 执行 `npm test`、`npm run check`。详见 [接入说明](buffett/README.md)。不新增 API、数据库表、KV 键或定时任务。\n';
 modify('docs/design/README.md',text=>text.includes('## 巴菲特指数集成')?text:text+section);
 for(const rel of ['docs/design/api.md','docs/design/database/README.md','docs/design/kv/README.md','docs/design/pages-and-features.md'])modify(rel,text=>text.includes('<!-- buffett-integration -->')?text:text+'\n\n<!-- buffett-integration -->\n巴菲特指数：`/buffett/` 为独立静态只读页面，无 API、D1 或 KV 变更；末值与两张图来自同一已核验快照。接入详见 docs/design/buffett/README.md。\n');
 const assetRoot=path.join(target,'public/buffett');

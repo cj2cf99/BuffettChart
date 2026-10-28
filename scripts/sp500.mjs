@@ -6,9 +6,9 @@ import {sha256,jsonBytes,safePath,writeChanged} from './io.mjs';
 import {addCalendarMonths} from '../src/freshness.js';
 export const SP_HASH='39b0b493e846afee31146aa1c4654668eb04462a1a18fa6be86afb1416a60c60';
 export const monthKey=s=>{if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(s))throw Error('Invalid month');return Number(s.slice(0,4))*12+Number(s.slice(5))-1;};
-export function monthlyModel(rows){
-  if(rows.length<24||rows[0].period!=='1957-03')throw Error('SP500 start/window mismatch');
-  rows.forEach((r,i)=>{if(Object.keys(r).some(k=>!['period','price'].includes(k))||monthKey(r.period)!==monthKey('1957-03')+i||!Number.isFinite(r.price)||r.price<=0)throw Error('Non-contiguous or invalid monthly price');});
+export function monthlyModel(rows,start='1957-03'){
+  if(rows.length<24||rows[0].period!==start)throw Error('Monthly index start/window mismatch');
+  rows.forEach((r,i)=>{if(Object.keys(r).some(k=>!['period','price'].includes(k))||monthKey(r.period)!==monthKey(start)+i||!Number.isFinite(r.price)||r.price<=0)throw Error('Non-contiguous or invalid monthly price');});
   const n=rows.length,meanT=(n-1)/24,logs=rows.map(r=>Math.log(r.price)),mean=logs.reduce((s,v)=>s+v,0)/n;
   let xy=0,xx=0;logs.forEach((v,i)=>{const t=i/12-meanT;xy+=t*(v-mean);xx+=t*t;});
   const b=xy/xx,a=mean-b*meanT,res=logs.map((v,i)=>v-a-b*i/12),sigma=Math.sqrt(res.reduce((s,v)=>s+v*v,0)/(n-2));
@@ -33,7 +33,7 @@ export function buildSP500(root,add){
   const state=loadSP500(root),{model,active}=state,fixed=[];
   for(const part of state.parts){const bytes=Buffer.from(JSON.stringify(part.rows)+'\n'),hash=sha256(bytes),url=`sp500/fixed/${part.id}.${hash.slice(0,16)}.json`;add(url,bytes);fixed.push({url,sha256:hash,months:part.rows.length});}
   const recent=Buffer.from(JSON.stringify(active.rows)+'\n');add('sp500/updates/recent.json',recent);
-  const current={schema_version:1,indicator:'sp500',frequency:'monthly',snapshot_id:active.snapshot_id,updated_on:active.updated_on,data_through:active.rows.at(-1).period,source:'Multpl / Shiller monthly average price; nominal, excluding dividends',source_url:'https://www.multpl.com/s-p-500-historical-prices/table/by-month',source_note:active.source_note,revision_reason:active.revision_reason||null,baseline_sha256:SP_HASH,window_months:24,fixed_through:state.fixed.at(-1).period,fixed,recent:{url:'sp500/updates/recent.json',sha256:sha256(recent)},model:{n:model.n,a:model.a,b_per_year:model.b_per_year,sigma_log:model.sigma_log,sigma_ddof:2},latest:model.rows.at(-1)};
+  const current={schema_version:1,indicator:'sp500',frequency:'monthly',snapshot_id:active.snapshot_id,updated_on:active.updated_on,data_through:active.rows.at(-1).period,source:'Multpl / Shiller monthly average price; nominal, excluding dividends',source_url:'https://www.multpl.com/s-p-500-historical-prices/table/by-month',source_note:active.source_note,revision_reason:active.revision_reason||null,baseline_sha256:SP_HASH,window_months:24,refresh_interval_months:2,warning_lead_days:14,fixed_through:state.fixed.at(-1).period,fixed,recent:{url:'sp500/updates/recent.json',sha256:sha256(recent)},model:{n:model.n,a:model.a,b_per_year:model.b_per_year,sigma_log:model.sigma_log,sigma_ddof:2},latest:model.rows.at(-1)};
   add('sp500/updates/current.json',jsonBytes(current));return current;
 }
 export function updateSP500(root,candidate,{apply=false,acceptRevisions=false}={}){

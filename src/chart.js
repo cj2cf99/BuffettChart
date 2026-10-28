@@ -1,23 +1,26 @@
 const colors = { '-2': '#2e7951', '-1': '#8abb77', '0': '#818b95', '1': '#df8b25', '2': '#c64b4b' };
 const fmt = (v, signed = false) => `${signed && v > 0 ? '+' : ''}${v.toFixed(2)}`;
 export function renderChart(model,current,detrended) {
-  const last=model.rows.at(-1),monthly=current.frequency==='monthly',unit=monthly&&!detrended?'':'%',prefix=monthly?'sp500-':'';
+  const last=model.rows.at(-1),monthly=current.frequency==='monthly',indexName=current.indicator==='nikkei225'?'日经 225':'标普 500',unit=monthly&&!detrended?' 点':'%',prefix=monthly?`${current.indicator}-`:'';
   const width = 1160, height = 420, left = 64, right = 1030, top = 40, bottom = 355;
   const vals = model.rows.map(row => detrended ? row.deviation_pct : row.bi_pct);
   const bands = [-2,-1,0,1,2].map(k => model.rows.map(row => detrended ? Math.expm1(k * model.sigma_log) * 100 : row.trend_pct * Math.exp(k * model.sigma_log)));
-  const step=monthly&&!detrended?2000:50;
+  const step=monthly&&!detrended?(current.indicator==='nikkei225'?10000:2000):50;
   const max = Math.ceil(Math.max(...vals, ...bands.flat()) / step) * step;
   const min = detrended ? Math.floor(Math.min(...vals, ...bands.flat()) / 50) * 50 : 0;
   const x = i => left + i / (model.n - 1) * (right - left);
   const y = v => bottom - (v - min) / (max - min) * (bottom - top);
   const line = v => v.map((value, i) => `${i ? 'L' : 'M'}${x(i).toFixed(2)},${y(value).toFixed(2)}`).join(' ');
-  const title = monthly?(detrended?'标普 500 去趋势':'标普 500 长期价格'):detrended ? '去趋势巴菲特指数' : '标准巴菲特指数';
+  const title = monthly?`${indexName} ${detrended?'去趋势':'长期价格'}`:detrended ? '去趋势巴菲特指数' : '标准巴菲特指数';
   const desc = `${model.rows[0].period} 至 ${last.period}，共 ${model.n} ${monthly?"月":"季"}；末值 ${fmt(vals.at(-1), detrended)}${unit}。两图共用该指标全历史趋势与对数残差标准差。`;
   let out = `<svg xmlns="http://www.w3.org/2000/svg" class="chart" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="${prefix}${detrended ? 'd' : 'h'}-title ${prefix}${detrended ? 'd' : 'h'}-desc"><title id="${prefix}${detrended ? 'd' : 'h'}-title">${title}</title><desc id="${prefix}${detrended ? 'd' : 'h'}-desc">${desc}</desc><rect width="${width}" height="${height}" fill="white"/><g font-family="Segoe UI,Microsoft YaHei,sans-serif">`;
   if(!monthly) out += `<rect x="${left}" y="${top}" width="${x(179)-left}" height="${bottom-top}" fill="#f1f3f5"/><text x="${left+12}" y="${top+18}" font-size="10" fill="#7b8794">冻结历史估计 · 1952Q1—1996Q3</text>`;
   for (let tick = min; tick <= max; tick += step) out += `<line x1="${left}" x2="${right}" y1="${y(tick)}" y2="${y(tick)}" stroke="#e7ecef"/><text x="${left-12}" y="${y(tick)+4}" text-anchor="end" font-size="11" fill="#718091">${tick}${unit}</text>`;
-  for (const year of (monthly?[1960,1970,1980,1990,2000,2010,2020]:[1952,1960,1970,1980,1990,2000,2010,2020])) {
-    const xx = x(monthly?(year-1957)*12-2:(year-1952)*4);
+  const firstYear=Number(model.rows[0].period.slice(0,4)),lastYear=Number(last.period.slice(0,4));
+  const years=monthly?Array.from({length:Math.floor(lastYear/10)-Math.ceil(firstYear/10)+1},(_,i)=>Math.ceil(firstYear/10)*10+i*10):[1952,1960,1970,1980,1990,2000,2010,2020];
+  for (const year of years) {
+    const startMonth=monthly?Number(model.rows[0].period.slice(5,7)):1;
+    const xx = x(monthly?(year-firstYear)*12+1-startMonth:(year-1952)*4);
     out += `<text x="${xx}" y="${bottom+25}" text-anchor="middle" font-size="11" fill="#718091">${year}</text>`;
   }
   out += `<text x="${right}" y="${bottom+25}" text-anchor="middle" font-size="11" fill="#718091">${last.period}</text>${monthly?'':`<line x1="${x(179)}" x2="${x(179)}" y1="${top}" y2="${bottom}" stroke="#b3bdc5" stroke-dasharray="3 4"/>`}`;

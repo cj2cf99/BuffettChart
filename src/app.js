@@ -14,11 +14,13 @@ function download(id,body,type,name){
 }
 function updateStatus(){
   if(!loaded)return;
-  const {updated_on}=loaded.current,{stale,dueOn}=freshness(updated_on);
-  find('.status').classList.toggle('stale',stale);
-  text('#status-label',stale?'需要更新':'季度快照');
-  text('#status-title',stale?'数据超过 5 个月未更新，请更新后再观察':'当前展示已保存的季度快照');
-  text('#status-detail',stale?`快照最后更新于 ${updated_on}，已超过 ${dueOn} 的五个月期限。请维护者核查官方数据并更新；当前数值保留供历史参考。`:`快照最后更新于 ${updated_on}。如到 ${dueOn} 后仍未更新，这里将提示需要更新。`);
+  const {updated_on,refresh_interval_months,warning_lead_days}=loaded.current,{stale,near,dueOn}=freshness(updated_on,refresh_interval_months,warning_lead_days),status=find('.status');
+  status.classList.toggle('active',stale||near);
+  status.classList.toggle('stale',stale);
+  if(!stale&&!near)return;
+  text('#status-label',stale?'需要更新':'即将到期');
+  text('#status-title',stale?'已到巴菲特指数六个月更新期限':'巴菲特指数更新期限临近');
+  text('#status-detail',stale?`快照最后更新于 ${updated_on}，六个月更新期限为 ${dueOn}。请维护者核查并更新；当前数值保留供历史参考。`:`快照最后更新于 ${updated_on}，六个月更新期限为 ${dueOn}。请维护者安排核查更新。`);
 }
 async function load(){
   if(busy)return;busy=true;find('#retry').hidden=true;
@@ -35,7 +37,7 @@ async function load(){
     download('#download-snapshot',JSON.stringify({...current,rows:model.rows,sources},null,2)+'\n','application/json','Buffett_Snapshot.json');
     loaded=result;updateStatus();
   }catch(error){
-    find('.status').classList.add('stale');text('#status-label','读取失败');
+    find('.status').classList.add('active','stale');text('#status-label','读取失败');
     text('#status-title','快照读取失败，请重试');text('#status-detail',error.message+'。未展示未经核验的组合数据。');
     find('#retry').hidden=false;
   }finally{busy=false;}

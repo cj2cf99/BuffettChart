@@ -9,7 +9,7 @@ export async function fetchSP500(base=new URL('./',location.href),fetcher=fetch)
   }
   for(let attempt=0;attempt<2;attempt++)try{
     const current=await load({url:'sp500/updates/current.json'});
-    if(current.indicator!=='sp500'||current.frequency!=='monthly'||current.window_months!==24||!/^[A-Za-z0-9_-]+$/.test(current.snapshot_id)||!/^\d{4}-\d{2}-\d{2}$/.test(current.updated_on))throw Error('标普配置无效');
+    if(current.indicator!=='sp500'||current.frequency!=='monthly'||current.window_months!==24||current.refresh_interval_months!==2||current.warning_lead_days!==14||!/^[A-Za-z0-9_-]+$/.test(current.snapshot_id)||!/^\d{4}-\d{2}-\d{2}$/.test(current.updated_on))throw Error('标普配置无效');
     const all=await Promise.all([...current.fixed,current.recent].map(load)),raw=all.flat();if(all.at(-1).length!==24||raw.length!==current.model.n)throw Error('标普期数不匹配');
     const m=current.model;if(![m.a,m.b_per_year,m.sigma_log].every(Number.isFinite)||m.sigma_log<=0||m.sigma_ddof!==2)throw Error('标普模型无效');
     const rows=raw.map((r,i)=>{const key=1957*12+2+i,period=`${Math.floor(key/12)}-${String(key%12+1).padStart(2,'0')}`;if(r.period!==period||!Number.isFinite(r.price)||r.price<=0)throw Error('标普月份不连续');const residual=Math.log(r.price)-m.a-m.b_per_year*i/12;return {...r,period_end:new Date(Date.UTC(Math.floor(key/12),key%12+1,0)).toISOString().slice(0,10),trend_price:Math.exp(m.a+m.b_per_year*i/12),deviation_pct:Math.expm1(residual)*100,z_score:residual/m.sigma_log};});

@@ -4,22 +4,22 @@
   "updated_on": "2026-10-07",
   "files": [
     {
-      "name": "fixed/app.f51a229d62c59653.js",
+      "name": "fixed/app.0a4e7bcf03e7acf6.js",
       "zone": "fixed",
-      "bytes": 3101,
-      "sha256": "f51a229d62c59653720157034add48ce97ba5cefee68f2575e9f9af9ed6e97dc"
+      "bytes": 3263,
+      "sha256": "0a4e7bcf03e7acf6492d8f16674b8c520b469351f7b3a616f2e63ec934b2cb86"
     },
     {
-      "name": "fixed/chart.cd1bd858582c099f.js",
+      "name": "fixed/chart.ec5342a3d609f172.js",
       "zone": "fixed",
-      "bytes": 4612,
-      "sha256": "cd1bd858582c099f241d7d759c98ac9140a4fd129c521d9adcfb1832384bb652"
+      "bytes": 5012,
+      "sha256": "ec5342a3d609f172274c68ca0513d277c2d755558078585f1370f1f04d009ba2"
     },
     {
-      "name": "fixed/freshness.d887fb054af10460.js",
+      "name": "fixed/freshness.c6b2bd329489bcd2.js",
       "zone": "fixed",
-      "bytes": 1067,
-      "sha256": "d887fb054af104600f8a6a75353dcd3bfbfae4a8763ba806a62d6f856a526420"
+      "bytes": 1965,
+      "sha256": "c6b2bd329489bcd2403b8fdf143627aefcbcf0ba8b25efbcc56095571c0e7504"
     },
     {
       "name": "fixed/history.e6a9642cf5fc19fc.json",
@@ -28,34 +28,58 @@
       "sha256": "e6a9642cf5fc19fcdee3336bb5a2aa84de775a36d96848bec938b9be715123e8"
     },
     {
-      "name": "fixed/series.ecd9c08f754a0562.js",
+      "name": "fixed/nikkei225-app.60bf7d5c9a5b39e6.js",
       "zone": "fixed",
-      "bytes": 4119,
-      "sha256": "ecd9c08f754a0562ad3907b214681b545365b973a0f5409d69c866554500a61c"
+      "bytes": 3397,
+      "sha256": "60bf7d5c9a5b39e61c0100c8f0dcee0ab38337aa19269008affb43d4893f1e87"
     },
     {
-      "name": "fixed/sp500-app.1c2ffbe9d32bfa30.js",
+      "name": "fixed/nikkei225.ce650ddc6dcec0c2.js",
       "zone": "fixed",
-      "bytes": 3143,
-      "sha256": "1c2ffbe9d32bfa3004bbe9b70097b8eed8b31b04e246aa183da7e9206416d2fd"
+      "bytes": 3136,
+      "sha256": "ce650ddc6dcec0c2f2f247bcbdcc4bffc32812ba031b78e99bbad7b4efa9b1a9"
     },
     {
-      "name": "fixed/sp500.38cdb21cd30cb8c8.js",
+      "name": "fixed/series.afe713bd1aed438f.js",
       "zone": "fixed",
-      "bytes": 2565,
-      "sha256": "38cdb21cd30cb8c86558708d611b21560ee270441e92720cd92e9da9c8c58e1e"
+      "bytes": 4188,
+      "sha256": "afe713bd1aed438fb80eaa18ed124b6f05f8360541bc7ce84a489b294bfaf444"
     },
     {
-      "name": "fixed/style.bdb333b7576f9b61.css",
+      "name": "fixed/sp500-app.108098151541775e.js",
       "zone": "fixed",
-      "bytes": 7995,
-      "sha256": "bdb333b7576f9b61ebeaeb28c43dfa30736fb0d039b545ee2ccfeccb54d03a8c"
+      "bytes": 3297,
+      "sha256": "108098151541775ea245bca1a2318330854f68fb3d2f1073a526a2dd528908a2"
+    },
+    {
+      "name": "fixed/sp500.b4a40d62ea3e2e77.js",
+      "zone": "fixed",
+      "bytes": 2634,
+      "sha256": "b4a40d62ea3e2e7749354dd1cad3f22cfdedd444e0f2c4275e46e9d9a9c511b4"
+    },
+    {
+      "name": "fixed/style.be739227f13d8bf8.css",
+      "zone": "fixed",
+      "bytes": 8029,
+      "sha256": "be739227f13d8bf8f0fbea64b7090d1931e9409accf48340aa30e5d3200c492a"
     },
     {
       "name": "index.html",
       "zone": "shell",
-      "bytes": 12356,
-      "sha256": "9a7dc84c9585832b23b8ddc15177516b1877e485d3900192aa4965752015b9f4"
+      "bytes": 17118,
+      "sha256": "9345b6e6f7f3df13706ad40a7f5a1ce7f21358654b113c8d165b05c7d0e37de2"
+    },
+    {
+      "name": "nikkei225/fixed/history.2d266ad0a2f7f744.json",
+      "zone": "fixed",
+      "bytes": 41794,
+      "sha256": "2d266ad0a2f7f744f3ebb509d7d931e51edd9b3de5c2b4e82bf82630c5e22ee6"
+    },
+    {
+      "name": "nikkei225/updates/current.json",
+      "zone": "updates",
+      "bytes": 1270,
+      "sha256": "e8a4285a35285420cbb8d12731032db269ffade08ab3e46719eb622e55722c96"
     },
     {
       "name": "sp500/fixed/history.320b2598722e4132.json",
@@ -66,8 +90,8 @@
     {
       "name": "sp500/updates/current.json",
       "zone": "updates",
-      "bytes": 1301,
-      "sha256": "3617c091f2a69c37e662f8cfb249cda47a000315e285b5e608a54ac1acc4caf2"
+      "bytes": 1360,
+      "sha256": "bb97a3777e85886935b99fe76f66b90377103315f2ecff1c74e678de9366f553"
     },
     {
       "name": "sp500/updates/recent.json",
@@ -78,8 +102,8 @@
     {
       "name": "updates/current.json",
       "zone": "updates",
-      "bytes": 1275,
-      "sha256": "ba9f06100770d75caaa17491fa2184767518d22838ffc8e9fc365a7ccc57ab16"
+      "bytes": 1334,
+      "sha256": "09d9d134b933ea89967792afd627a0fabfa12a0d17b74e4f5a3ea6b563e5cffe"
     },
     {
       "name": "updates/recent.json",

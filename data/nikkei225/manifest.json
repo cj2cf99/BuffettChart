@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "snapshot_id": "nikkei225_ecb_datastream_monthly_197211_202609_v1",
+  "updated_on": "2026-10-28",
+  "data_through": "2026-09",
+  "frequency": "monthly",
+  "start": "1972-11",
+  "months": 647,
+  "source_file": "data/nikkei225/monthly_average.csv",
+  "source_file_sha256": "e870808c182ed9e2bfd64ff0402b61d83422f04c7dd04c2d2a3ab32d54dcf131",
+  "source": "ECB Data Portal / DataStream, Nikkei 225 Stock Average Equity Index, historical close average of observations through period",
+  "source_url": "https://data.ecb.europa.eu/data/datasets/FM/FM.M.JP.JPY.DS.EI.JAPDOWA.HSTA",
+  "source_note": "Monthly period average, nominal JPY index points, excluding dividends and inflation adjustment. Original source values are retained; trend statistics are this project’s separate calculation."
+}

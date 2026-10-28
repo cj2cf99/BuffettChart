@@ -5,7 +5,7 @@ export function periodKey(period) {
 export function periodAt(key) { return `${Math.floor(key/4)}Q${key%4+1}`; }
 export function assemble(current,parts,recent) {
   if(!/^[A-Za-z0-9_-]+$/.test(current.snapshot_id)||!/^\d{4}-\d{2}-\d{2}$/.test(current.updated_on)||new Date(current.updated_on+'T00:00:00Z').toISOString().slice(0,10)!==current.updated_on)throw new Error('快照元数据无效');
-  if(current.schema_version!==2||current.recent_window!==8||recent.values.length!==8||parts.length!==current.fixed.length)throw new Error('数据分区版本不一致');
+  if(current.schema_version!==2||current.recent_window!==8||current.refresh_interval_months!==6||current.warning_lead_days!==30||recent.values.length!==8||parts.length!==current.fixed.length)throw new Error('数据分区版本不一致');
   const values=[],labels=[];
   for(const [index,part] of [...parts,recent].entries()){
     const start=periodKey(part.start);

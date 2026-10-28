@@ -1,6 +1,6 @@
 // BuffettChart read-only subpage. Reuses the existing public/ asset binding.
 export function publicAsset(name) {
-  return name===''||name==='index.html'||/^fixed\/(?:app|chart|series|freshness|sp500|sp500-app)\.[a-f0-9]{16}\.js$/.test(name)||/^fixed\/style\.[a-f0-9]{16}\.css$/.test(name)||/^fixed\/(?:history|\d{4}Q[1-4])\.[a-f0-9]{16}\.json$/.test(name)||/^updates\/(?:current|recent)\.json$/.test(name)||/^sp500\/fixed\/(?:history|\d{4}-\d{2})\.[a-f0-9]{16}\.json$/.test(name)||/^sp500\/updates\/(?:current|recent)\.json$/.test(name);
+  return name===''||name==='index.html'||/^fixed\/(?:app|chart|series|freshness|sp500|sp500-app|nikkei225|nikkei225-app)\.[a-f0-9]{16}\.js$/.test(name)||/^fixed\/style\.[a-f0-9]{16}\.css$/.test(name)||/^fixed\/(?:history|\d{4}Q[1-4])\.[a-f0-9]{16}\.json$/.test(name)||/^updates\/(?:current|recent)\.json$/.test(name)||/^sp500\/fixed\/(?:history|\d{4}-\d{2})\.[a-f0-9]{16}\.json$/.test(name)||/^sp500\/updates\/(?:current|recent)\.json$/.test(name)||/^nikkei225\/fixed\/history\.[a-f0-9]{16}\.json$/.test(name)||/^nikkei225\/updates\/current\.json$/.test(name);
 }
 export async function handleBuffett(request, env) {
   const url = new URL(request.url);

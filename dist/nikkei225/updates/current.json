@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "indicator": "nikkei225",
+  "frequency": "monthly",
+  "snapshot_id": "nikkei225_ecb_datastream_monthly_197211_202609_v1",
+  "updated_on": "2026-10-28",
+  "data_through": "2026-09",
+  "source": "ECB Data Portal / DataStream, Nikkei 225 Stock Average Equity Index, historical close average of observations through period",
+  "source_url": "https://data.ecb.europa.eu/data/datasets/FM/FM.M.JP.JPY.DS.EI.JAPDOWA.HSTA",
+  "source_note": "Monthly period average, nominal JPY index points, excluding dividends and inflation adjustment. Original source values are retained; trend statistics are this project’s separate calculation.",
+  "refresh_interval_months": 2,
+  "warning_lead_days": 14,
+  "history": {
+    "url": "nikkei225/fixed/history.2d266ad0a2f7f744.json",
+    "sha256": "2d266ad0a2f7f744f3ebb509d7d931e51edd9b3de5c2b4e82bf82630c5e22ee6",
+    "months": 647
+  },
+  "model": {
+    "n": 647,
+    "a": 8.864573439036796,
+    "b_per_year": 0.025645055291833797,
+    "sigma_log": 0.46563045457406577,
+    "sigma_ddof": 2
+  },
+  "latest": {
+    "period": "2026-09",
+    "price": 65048.2489474,
+    "period_end": "2026-09-30",
+    "trend_price": 28145.204080577405,
+    "deviation_pct": 131.11663628791666,
+    "z_score": 1.799178528532118
+  }
+}

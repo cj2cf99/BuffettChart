@@ -7,6 +7,8 @@
   "source_note": "Original frozen migration snapshot; partitioned without refreshing data.",
   "revision_reason": null,
   "recent_window": 8,
+  "refresh_interval_months": 6,
+  "warning_lead_days": 30,
   "fixed_through": "2024Q2",
   "fixed": [
     {

@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {loadSource,BASELINE_HASH} from './source.mjs';
 import {computeModel} from './model.mjs';
 import {buildSP500} from './sp500.mjs';
+import {buildNikkei} from './nikkei225.mjs';
 import {sha256,jsonBytes,writeChanged,safePath} from './io.mjs';
 export function build(root=fileURLToPath(new URL('../',import.meta.url))) {
   const read=p=>fs.readFileSync(safePath(root,p));
@@ -19,10 +20,11 @@ export function build(root=fileURLToPath(new URL('../',import.meta.url))) {
   add('updates/recent.json',recentBytes);
   const current={schema_version:2,snapshot_id:input.snapshot_id,updated_on:active.updated_on,data_through:input.data_through,data_through_date:last.period_end,
     source_note:active.source_note,revision_reason:active.revision_reason,
-    recent_window:8,fixed_through:state.fixedRows.at(-1).period,fixed,recent:{url:'updates/recent.json',sha256:sha256(recentBytes),quarters:8},
+    recent_window:8,refresh_interval_months:6,warning_lead_days:30,fixed_through:state.fixedRows.at(-1).period,fixed,recent:{url:'updates/recent.json',sha256:sha256(recentBytes),quarters:8},
     baseline_sha256:BASELINE_HASH,rows_sha256:sha256(Buffer.from(JSON.stringify(input.rows))),model:{n:model.n,a:model.a,b_per_year:model.b_per_year,sigma_log:model.sigma_log,sigma_ddof:2},latest:last};
   add('updates/current.json',jsonBytes(current));
   buildSP500(root,add);
+  buildNikkei(root,add);
   const moduleNames={};
   for(const name of ['freshness','series','chart']){
     const bytes=read('src/'+name+'.js');moduleNames[name]=`fixed/${name}.${sha256(bytes).slice(0,16)}.js`;add(moduleNames[name],bytes);
@@ -34,9 +36,13 @@ export function build(root=fileURLToPath(new URL('../',import.meta.url))) {
   const spName=`fixed/sp500.${sha256(spModule).slice(0,16)}.js`;add(spName,spModule);
   let spApp=read('src/sp500-app.js').toString().replace("'./freshness.js'",`'./${path.posix.basename(moduleNames.freshness)}'`).replace("'./sp500.js'",`'./${path.posix.basename(spName)}'`);
   const spAppName=`fixed/sp500-app.${sha256(spApp).slice(0,16)}.js`;add(spAppName,spApp);
+  let nkModule=read('src/nikkei225.js').toString().replace("'./chart.js'",`'./${path.posix.basename(moduleNames.chart)}'`);
+  const nkName=`fixed/nikkei225.${sha256(nkModule).slice(0,16)}.js`;add(nkName,nkModule);
+  let nkApp=read('src/nikkei225-app.js').toString().replace("'./freshness.js'",`'./${path.posix.basename(moduleNames.freshness)}'`).replace("'./nikkei225.js'",`'./${path.posix.basename(nkName)}'`);
+  const nkAppName=`fixed/nikkei225-app.${sha256(nkApp).slice(0,16)}.js`;add(nkAppName,nkApp);
   const css=read('src/style.css'),cssName=`fixed/style.${sha256(css).slice(0,16)}.css`;add(cssName,css);
   const legend=`<div class="legend" aria-label="图例"><span><i class="actual"></i>指数 / 偏离</span><span><i style="--color:#818b95"></i>趋势基准</span>${[[-2,'#2e7951'],[-1,'#8abb77'],[1,'#df8b25'],[2,'#c64b4b']].map(([k,color])=>`<span><i style="--color:${color}"></i>${k>0?'+':''}${k}σ</span>`).join('')}</div>`;
-  const html=read('src/index.html').toString().replace('{{STYLE_URL}}','./'+cssName).replace('{{APP_URL}}','./'+appName).replace('{{SP500_APP_URL}}','./'+spAppName).replaceAll('{{LEGEND}}',legend);
+  const html=read('src/index.html').toString().replace('{{STYLE_URL}}','./'+cssName).replace('{{APP_URL}}','./'+appName).replace('{{SP500_APP_URL}}','./'+spAppName).replace('{{NIKKEI_APP_URL}}','./'+nkAppName).replaceAll('{{LEGEND}}',legend);
   if(html.includes('{{'))throw new Error('Unresolved template');
   add('index.html',html);
   const dist=path.join(root,'dist'),written=[];

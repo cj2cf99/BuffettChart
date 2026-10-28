@@ -11,6 +11,8 @@
   "revision_reason": null,
   "baseline_sha256": "39b0b493e846afee31146aa1c4654668eb04462a1a18fa6be86afb1416a60c60",
   "window_months": 24,
+  "refresh_interval_months": 2,
+  "warning_lead_days": 14,
   "fixed_through": "2024-09",
   "fixed": [
     {
