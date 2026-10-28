@@ -1,0 +1,43 @@
+{
+  "unchanged_build": {
+    "changed_files": 0,
+    "changed_bytes": 0
+  },
+  "synthetic_recent_revision": {
+    "changed_public_files": [
+      {
+        "file": "updates/current.json",
+        "bytes": 1268
+      },
+      {
+        "file": "updates/recent.json",
+        "bytes": 181
+      }
+    ],
+    "changed_public_bytes": 1449,
+    "fixed_files_rewritten": 0,
+    "shell_rewritten": false,
+    "source_written_bytes": 7505
+  },
+  "synthetic_new_quarter": {
+    "promoted": "2024Q3",
+    "recent_quarters": 8,
+    "changed_public_files": [
+      {
+        "file": "fixed/2024Q3.4fa66b151fe62666.json",
+        "bytes": 49
+      },
+      {
+        "file": "updates/current.json",
+        "bytes": 1396
+      },
+      {
+        "file": "updates/recent.json",
+        "bytes": 181
+      }
+    ],
+    "changed_public_bytes": 1626,
+    "old_fixed_files_rewritten": 0,
+    "shell_rewritten": false
+  }
+}

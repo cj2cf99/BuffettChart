@@ -1,0 +1,169 @@
+{
+  "snapshot_id": "buffett_fed_quarterly_1952_2026Q2_v1",
+  "updated_on": "2026-10-07",
+  "data_through": "2026Q2",
+  "source_note": "Original frozen migration snapshot; partitioned without refreshing data.",
+  "revision_reason": null,
+  "rows": [
+    {
+      "period": "2024Q3",
+      "quarter_label": "2024-07-01",
+      "period_end": "2024-09-30",
+      "market_cap_usd_million": "58526191",
+      "gdp_usd_billion_saar": "29568.256",
+      "buffett_indicator_pct": "197.9358911124146111289079748227288075428",
+      "quality": "FED_OFFICIAL_DERIVED",
+      "is_fitted": false,
+      "is_interpolated": false,
+      "frozen": true,
+      "formula": "public-etf-closed_end",
+      "source_values": {
+        "BOGZ1LM883164115Q": "68755404",
+        "BOGZ1LM883164105Q": "80068875",
+        "BOGZ1FL564090005Q": "9968601",
+        "BOGZ1FL554090005Q": "260612",
+        "GDP": "29568.256"
+      }
+    },
+    {
+      "period": "2024Q4",
+      "quarter_label": "2024-10-01",
+      "period_end": "2024-12-31",
+      "market_cap_usd_million": "60091358",
+      "gdp_usd_billion_saar": "29929.552",
+      "buffett_indicator_pct": "200.7760022602409818897389443049464956909",
+      "quality": "FED_OFFICIAL_DERIVED",
+      "is_fitted": false,
+      "is_interpolated": false,
+      "frozen": true,
+      "formula": "public-etf-closed_end",
+      "source_values": {
+        "BOGZ1LM883164115Q": "70647887",
+        "BOGZ1LM883164105Q": "82185191",
+        "BOGZ1FL564090005Q": "10305396",
+        "BOGZ1FL554090005Q": "251133",
+        "GDP": "29929.552"
+      }
+    },
+    {
+      "period": "2025Q1",
+      "quarter_label": "2025-01-01",
+      "period_end": "2025-03-31",
+      "market_cap_usd_million": "56970073",
+      "gdp_usd_billion_saar": "30171.979",
+      "buffett_indicator_pct": "188.8178200044484983898470829507073433930",
+      "quality": "FED_OFFICIAL_DERIVED",
+      "is_fitted": false,
+      "is_interpolated": false,
+      "frozen": true,
+      "formula": "public-etf-closed_end",
+      "source_values": {
+        "BOGZ1LM883164115Q": "67587295",
+        "BOGZ1LM883164105Q": "79061495",
+        "BOGZ1FL564090005Q": "10369126",
+        "BOGZ1FL554090005Q": "248096",
+        "GDP": "30171.979"
+      }
+    },
+    {
+      "period": "2025Q2",
+      "quarter_label": "2025-04-01",
+      "period_end": "2025-06-30",
+      "market_cap_usd_million": "62989389",
+      "gdp_usd_billion_saar": "30630.174",
+      "buffett_indicator_pct": "205.6448944756239386691045241858567306865",
+      "quality": "FED_OFFICIAL_DERIVED",
+      "is_fitted": false,
+      "is_interpolated": false,
+      "frozen": true,
+      "formula": "public-etf-closed_end",
+      "source_values": {
+        "BOGZ1LM883164115Q": "74732977",
+        "BOGZ1LM883164105Q": "86481418",
+        "BOGZ1FL564090005Q": "11492136",
+        "BOGZ1FL554090005Q": "251452",
+        "GDP": "30630.174"
+      }
+    },
+    {
+      "period": "2025Q3",
+      "quarter_label": "2025-07-01",
+      "period_end": "2025-09-30",
+      "market_cap_usd_million": "67992703",
+      "gdp_usd_billion_saar": "31180.493",
+      "buffett_indicator_pct": "218.0616675945438066036993064862701176662",
+      "quality": "FED_OFFICIAL_DERIVED",
+      "is_fitted": false,
+      "is_interpolated": false,
+      "frozen": true,
+      "formula": "public-etf-closed_end",
+      "source_values": {
+        "BOGZ1LM883164115Q": "80885073",
+        "BOGZ1LM883164105Q": "93128405",
+        "BOGZ1FL564090005Q": "12635110",
+        "BOGZ1FL554090005Q": "257260",
+        "GDP": "31180.493"
+      }
+    },
+    {
+      "period": "2025Q4",
+      "quarter_label": "2025-10-01",
+      "period_end": "2025-12-31",
+      "market_cap_usd_million": "69521517",
+      "gdp_usd_billion_saar": "31462.523",
+      "buffett_indicator_pct": "220.9661221383930335148265128006422116879",
+      "quality": "FED_OFFICIAL_DERIVED",
+      "is_fitted": false,
+      "is_interpolated": false,
+      "frozen": true,
+      "formula": "public-etf-closed_end",
+      "source_values": {
+        "BOGZ1LM883164115Q": "83151181",
+        "BOGZ1LM883164105Q": "95643713",
+        "BOGZ1FL564090005Q": "13372957",
+        "BOGZ1FL554090005Q": "256707",
+        "GDP": "31462.523"
+      }
+    },
+    {
+      "period": "2026Q1",
+      "quarter_label": "2026-01-01",
+      "period_end": "2026-03-31",
+      "market_cap_usd_million": "66460524",
+      "gdp_usd_billion_saar": "31906.274",
+      "buffett_indicator_pct": "208.2992329345632774293858317646240986961",
+      "quality": "FED_OFFICIAL_DERIVED",
+      "is_fitted": false,
+      "is_interpolated": false,
+      "frozen": true,
+      "formula": "public-etf-closed_end",
+      "source_values": {
+        "BOGZ1LM883164115Q": "80266112",
+        "BOGZ1LM883164105Q": "93038056",
+        "BOGZ1FL564090005Q": "13552294",
+        "BOGZ1FL554090005Q": "253294",
+        "GDP": "31906.274"
+      }
+    },
+    {
+      "period": "2026Q2",
+      "quarter_label": "2026-04-01",
+      "period_end": "2026-06-30",
+      "market_cap_usd_million": "77638670",
+      "gdp_usd_billion_saar": "32563.030",
+      "buffett_indicator_pct": "238.4258160251057717908929236622021967857",
+      "quality": "FED_OFFICIAL_DERIVED",
+      "is_fitted": false,
+      "is_interpolated": false,
+      "frozen": true,
+      "formula": "public-etf-closed_end",
+      "source_values": {
+        "BOGZ1LM883164115Q": "93607725",
+        "BOGZ1LM883164105Q": "109244695",
+        "BOGZ1FL564090005Q": "15702340",
+        "BOGZ1FL554090005Q": "266715",
+        "GDP": "32563.030"
+      }
+    }
+  ]
+}

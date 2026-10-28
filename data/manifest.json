@@ -1,6 +1,0 @@
-{
-  "input_file": "Buffett_Quarterly_Frozen_v1.json",
-  "input_sha256": "811a45df3978d0e4e41d85012a737683014f5eba579ba5584a92536e2af68b1a",
-  "updated_on": "2026-10-07",
-  "note": "Date of the saved data/model snapshot, never the web build or deploy date. v1 remains immutable."
-}

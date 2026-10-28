@@ -9,10 +9,19 @@ export function computeModel(input) {
     if (lastQuarter !== null && key !== lastQuarter + 1) throw new Error('Non-contiguous quarters');
     lastQuarter = key;
     if (row.quarter_label !== `${year}-${String((quarter - 1) * 3 + 1).padStart(2, '0')}-01`) throw new Error('Quarter date mismatch');
+    const end=new Date(Date.UTC(year,quarter*3,0)).toISOString().slice(0,10);
+    if(row.period_end!==end)throw new Error('Quarter end mismatch');
     const cap = Number(row.market_cap_usd_million), gdp = Number(row.gdp_usd_billion_saar), bi = Number(row.buffett_indicator_pct);
     if (![cap, gdp, bi].every(v => Number.isFinite(v) && v > 0)) throw new Error('Invalid observations');
     if (Math.abs(cap / 1000 / gdp * 100 - bi) > 1e-9) throw new Error('BI unit mismatch');
-    if (row.is_interpolated || !row.frozen) throw new Error('Invalid baseline flags');
+    if(i>=179){
+      const s=row.source_values||{};
+      const keys=['BOGZ1LM883164115Q','BOGZ1FL564090005Q','BOGZ1FL554090005Q','GDP'];
+      if(keys.some(k=>s[k]===null||s[k]===''||s[k]===undefined))throw new Error('Official source values missing');
+      const official=keys.map(k=>Number(s[k]));
+      if(!official.every(Number.isFinite)||official.some(v=>v<0)||Math.abs(official[0]-official[1]-official[2]-cap)>1e-6||Math.abs(official[3]-gdp)>1e-9)throw new Error('Official source values mismatch');
+    }
+    if (row.is_interpolated !== false || row.frozen !== true) throw new Error('Invalid baseline flags');
     if (i < 179 ? row.quality !== 'HISTORICAL_ESTIMATE_FROZEN' || row.is_fitted !== true : row.quality !== 'FED_OFFICIAL_DERIVED' || row.is_fitted !== false) throw new Error('Quality boundary mismatch');
   }
   if (rows[0].period !== '1952Q1' || rows.at(-1).period !== input.data_through) throw new Error('Input coverage mismatch');

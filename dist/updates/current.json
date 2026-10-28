@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "snapshot_id": "buffett_fed_quarterly_1952_2026Q2_v1",
+  "updated_on": "2026-10-07",
+  "data_through": "2026Q2",
+  "data_through_date": "2026-06-30",
+  "source_note": "Original frozen migration snapshot; partitioned without refreshing data.",
+  "revision_reason": null,
+  "recent_window": 8,
+  "fixed_through": "2024Q2",
+  "fixed": [
+    {
+      "url": "fixed/history.e6a9642cf5fc19fc.json",
+      "sha256": "e6a9642cf5fc19fcdee3336bb5a2aa84de775a36d96848bec938b9be715123e8",
+      "quarters": 290
+    }
+  ],
+  "recent": {
+    "url": "updates/recent.json",
+    "sha256": "128b83ec7da396eb802a6c7bb0c17475882b5f219c166347c24d9b955d553017",
+    "quarters": 8
+  },
+  "baseline_sha256": "811a45df3978d0e4e41d85012a737683014f5eba579ba5584a92536e2af68b1a",
+  "rows_sha256": "cb30d03a3952634ff6363aa7b232a0181b2452e92bf82615bfdc733e09a1bf45",
+  "model": {
+    "n": 298,
+    "a": 3.7517877600036846,
+    "b_per_year": 0.016375401068659735,
+    "sigma_log": 0.3385719898464282,
+    "sigma_ddof": 2
+  },
+  "latest": {
+    "period": "2026Q2",
+    "period_end": "2026-06-30",
+    "bi_pct": 238.42581602510577,
+    "trend_pct": 143.6904437312908,
+    "deviation_pct": 65.93018285264368,
+    "z_score": 1.4956846515931097,
+    "historical_estimate": false
+  }
+}

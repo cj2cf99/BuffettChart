@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "recent_window": 8,
+  "base_through": "2024Q2",
+  "fixed_extensions": [],
+  "active": {
+    "file": "updates/snapshots/buffett_fed_quarterly_1952_2026Q2_v1.json",
+    "sha256": "95a3c6a8baeacac0702e8248393b40914c459270083a24d49efd00e5551396a8"
+  }
+}

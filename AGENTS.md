@@ -1,9 +1,11 @@
 # BuffettChart 维护约定
 
-- 正式网页仅显示标准和去趋势两图，挂载在 `/buffett/`。
-- 开始改动前阅读 README.md、docs/cloudflare.md。原迁移规范保存在 archive/，网站两图及五个月提示要求优先于归档中的旧三图交付要求。
-- 不修改固定 v1 JSON 或其历史估计系数；新增季度/官方修订必须采用独立版本，修订采纳由用户决定。
-- 数据更新日来自数据快照核验日，不得因构建、改样式、提交或部署而刷新。
-- 修改后运行 npm run build 和 npm test。向 myapp 导入后在 myapp 运行 npm test、npm run check。
-- 仅 dist/ 内白名单文件部署；不公开 archive/、data/、测试或 Git 文件。
-- Git 同步不隐含正式 Cloudflare 部署。无用户明确要求时不部署，不改变 Access、D1 或 KV。
+- 阅读 README.md 与 docs/cloudflare.md。正式网页为 /buffett/ 下标准和去趋势两图。
+- 最新结构要求：固定区 + 滚动最近 8 季更新区；该要求优先于 archive 中原三图交付和“当前有效全 298 行不采纳修订”的旧流程。原始完整 v1 文件仍永久保留，不覆盖。
+- data/fixed/baseline-v1.json 哈希写死；固定历史不得改写。新增季度仅追加固定片段，将更新区维持 8 季。
+- 近期修订先生成差异；用户决定采纳后才可使用 --accept-revisions --apply。优化结构或测试不授权采纳实际新数据。
+- data/updates/snapshots 与 audit 的旧文件不覆盖；current.json 为唯一当前源入口。数据不变不刷新 updated_on。
+- 构建和导入必须按字节比较，不改变未变化文件的 mtime。禁止重新打包整段老历史作为日常更新。
+- 只发布 publication.json 引用的公开文件。固定发布文件带内容哈希，代码升级产生新文件名；不要修改原路径字节。
+- 修改后 npm run build、npm test。向 myapp 导入后在 myapp 执行 npm test、npm run check。
+- 不自动部署 Cloudflare，不改 Access/D1/KV。GitHub 来源仓库同步不隐含 Cloudflare 仓库推送。
