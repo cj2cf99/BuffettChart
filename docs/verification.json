@@ -1,0 +1,37 @@
+{
+  "verified_on": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "data_refreshed": false,
+  "snapshot_updated_on": "2026-10-07",
+  "data_through": "2026Q2",
+  "quarters": 298,
+  "frozen_input_sha256_verified": true,
+  "original_migration_source_files_verified": 32,
+  "website_formal_charts": 2,
+  "model_regression_tolerance": 1e-12,
+  "unit_detrending_and_orthogonality_checks": "passed",
+  "source_tests": {"passed": 5, "failed": 0},
+  "cloudflare_tests": {"passed": 15, "failed": 0},
+  "cloudflare_wrangler_dry_run": "passed",
+  "cloudflare_local_worker_http_smoke": {
+    "home": 200,
+    "buffett_page": 200,
+    "all_seven_public_assets": 200,
+    "archive_path": 404
+  },
+  "idempotent_second_import_files_changed": 0,
+  "browser": {
+    "desktop": "both charts and all four final values visually verified in actual local Worker",
+    "mobile_viewport": "390x844; content width 375 excluding scrollbar; document scroll width 375",
+    "mobile_charts": "horizontal scroll within each chart container",
+    "console_warnings_and_errors": 0
+  },
+  "freshness": {
+    "strictly_exceeds_five_calendar_months": true,
+    "current_snapshot_warning_starts": "2027-03-08T00:00:00+08:00",
+    "month_end_and_leap_year": "passed",
+    "actual_browser_script_timer_and_visibility_logic": "passed in isolated DOM fixture"
+  },
+  "cloudflare_production_deployed": false,
+  "cloudflare_access_database_kv_changes": false
+}

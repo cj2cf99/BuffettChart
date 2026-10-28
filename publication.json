@@ -1,0 +1,35 @@
+{
+  "snapshot_id": "buffett_fed_quarterly_1952_2026Q2_v1",
+  "updated_on": "2026-10-07",
+  "input_sha256": "811a45df3978d0e4e41d85012a737683014f5eba579ba5584a92536e2af68b1a",
+  "files": [
+    {
+      "name": "app.js",
+      "sha256": "5715e72c7ef9540739d5d7e7ac4eb4b14a84b9d027bab23575569af0b6e9c84b"
+    },
+    {
+      "name": "detrended.svg",
+      "sha256": "ac2f699807d13473fd51d2c3438589f5f69bcf9acdb557488df5072275ee10e9"
+    },
+    {
+      "name": "freshness.js",
+      "sha256": "d887fb054af104600f8a6a75353dcd3bfbfae4a8763ba806a62d6f856a526420"
+    },
+    {
+      "name": "historical.svg",
+      "sha256": "5d8e7038a828a2b81c831955f345e21076deaba73ca33fdc4b31ed881204b6ef"
+    },
+    {
+      "name": "index.html",
+      "sha256": "b10f378bf35413277af06703eb0fbfb7bc4db979ebca65b3687b6b2ea67af04d"
+    },
+    {
+      "name": "snapshot.json",
+      "sha256": "0ebc7f7b412866a122e767db1efd0bf3fdd4fedc40f9430bdb672a6a5af6c66d"
+    },
+    {
+      "name": "style.css",
+      "sha256": "c162af6a01c2fc2385b3bfee387ace967af1155ed72163c4bd1bd66fd2ba8c1d"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="美国季度巴菲特指数：标准市值/GDP与相对长期趋势偏离，基于保留版本的半静态快照。"><title>巴菲特指数 · 个人工作台</title><link rel="stylesheet" href="./style.css"></head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="brand" href="/"><span aria-hidden="true">✓</span>个人工作台</a><nav aria-label="主导航"><a href="/">总览</a><a href="/stockcheck/">个股监察</a><a href="./" aria-current="page">巴菲特指数</a></nav></div></header>
+<main>
+  <div class="intro"><div><p class="eyebrow">MARKET OBSERVATORY / US EQUITIES</p><h1>巴菲特指数</h1><p class="muted">以经济规模为参照，观察美国股票市场与长期趋势的距离。</p></div><p class="period">数据观测季度<strong>{{PERIOD}}</strong><span>全历史 {{START}} — {{PERIOD}} · {{COUNT}} 季</span></p></div>
+  <section class="status" data-updated-on="{{UPDATED}}" aria-live="polite" aria-label="更新状态"><span id="status-label" class="status-label">季度快照</span><div><strong id="status-title">当前展示已保存的季度快照</strong><p id="status-detail">快照最后更新于 {{UPDATED}}。超过 5 个日历月未更新时需要核查更新。</p></div></section>
+  <noscript><p>浏览器未启用 JavaScript，无法自动检查五个月更新期限。快照最后更新于 {{UPDATED}}；超过 {{DUE}} 后请提醒维护者更新。</p></noscript>
+  <section class="metrics" aria-label="末期指标数值">
+    <article class="metric primary"><h2>标准巴菲特指数</h2><div class="value">{{BI}}<span class="unit">%</span></div><p>美国公开企业股权市值 / 名义 GDP</p></article>
+    <article class="metric deviation"><h2>去趋势巴菲特指数</h2><div class="value">{{DEV}}<span class="unit">%</span></div><p>相对同季长期趋势的偏离</p></article>
+    <article class="metric"><h2>长期趋势参考</h2><div class="value">{{TREND}}<span class="unit">%</span></div><p>全历史指数回归 · 同一模型</p></article>
+    <article class="metric"><h2>对数残差 Z-score</h2><div class="value">{{Z}}<span class="unit">σ</span></div><p>对数偏离 / 对数残差标准差</p></article>
+  </section>
+  <section class="chart-card" aria-labelledby="standard-title"><div class="chart-heading"><div><h2 id="standard-title"><span class="number">01</span>标准巴菲特指数</h2><p>Market value / GDP · 全历史与指数趋势</p></div><a class="chart-link" href="./historical.svg" download>下载 SVG ↗</a></div><div class="chart-scroll" tabindex="0" aria-label="标准指数图，可横向滚动">{{HISTORICAL_SVG}}</div><p class="scroll-hint">左右滑动查看完整图表 →</p>{{LEGEND}}<p class="chart-note">浅灰区域为 1996Q4 前的冻结历史估计；其后为官方原值派生。纵轴为市值 / GDP（%）。</p></section>
+  <section class="chart-card" aria-labelledby="detrended-title"><div class="chart-heading"><div><h2 id="detrended-title"><span class="number">02</span>去趋势巴菲特指数</h2><p>Deviation from exponential trend · 0% 为趋势基准</p></div><a class="chart-link" href="./detrended.svg" download>下载 SVG ↗</a></div><div class="chart-scroll" tabindex="0" aria-label="去趋势指数图，可横向滚动">{{DETRENDED_SVG}}</div><p class="scroll-hint">左右滑动查看完整图表 →</p>{{LEGEND}}<p class="chart-note">去趋势值 =（标准指数 / 长期趋势 − 1）× 100。σ 带由对数残差换算，因此正负百分比不对称；去趋势百分比与 Z-score 分别表示。</p></section>
+  <section class="method" aria-label="指标口径与维护说明"><div><h2>读图口径</h2><p>市值采用 Fed 国内公开企业股权，扣除 ETF 和封闭式基金；GDP 使用名义 GDP 季调年率。1952Q1—1996Q3 共 179 季为冻结估计，固定公开股权比例不重校准。</p><p>两图共享全历史 <code>ln(BI) = a + b × t</code> 模型，残差标准差自由度为 n−2。σ 带表示历史残差离散程度，不是置信区间、预测区间或风险概率。</p></div><div><h2>季度快照 · 半静态维护</h2><p>本页展示已保存快照，不自动抓取最新数据。新季度应保存为独立版本；官方历史修订需另列差异并经采纳后更新。页面重建不会重置更新日期。</p><ul><li>数据截至 {{END_DATE}}（{{PERIOD}}）；快照最后更新 {{UPDATED}}。</li><li>超过 5 个日历月未更新时，顶部显示更新提示（Asia/Shanghai）。</li><li>长期趋势会随新增季度重新估计，冻结基础观测保持原样。</li></ul></div></section>
+  <footer class="footer"><p>BuffettChart · {{SNAPSHOT}}<br>冻结快照用于观察与研究，不代表实时市场估值。</p><div class="foot-links"><a href="./snapshot.json" download>快照与模型</a><a href="https://fred.stlouisfed.org/series/BOGZ1LM883164115Q" target="_blank" rel="noopener noreferrer">Fed / FRED 来源 ↗</a><a href="https://github.com/cj2cf99/BuffettChart" target="_blank" rel="noopener noreferrer">项目源码 ↗</a></div></footer>
+</main><script type="module" src="./app.js"></script>
+</body></html>
