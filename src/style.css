@@ -3,3 +3,15 @@
 
 .longterm-heading{padding-bottom:30px;margin-bottom:30px;border-bottom:1px solid var(--line)}.longterm-heading nav{margin-top:20px;flex-wrap:wrap}.longterm-heading nav a{color:var(--blue)}#sp500{border-top:1px solid var(--line);padding-top:40px;margin-top:35px}.reserved{padding:28px;margin-top:32px}.reserved h2{margin:4px 0 12px}.reserved p{font-size:13px}html{scroll-behavior:smooth}#buffett,#sp500,#nikkei225{scroll-margin-top:20px}
 #sp500 .metric .value{font-size:clamp(23px,2.8vw,32px);white-space:nowrap}
+
+/* Shared with myapp's route registry; keep docs/navigation-menu.md in sync. */
+.unified-header{position:sticky;top:0;z-index:20;min-height:68px;height:auto;padding:10px max(20px,calc((100vw - 1440px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px;background:#ffffffed;border-bottom:1px solid #dce5e9;backdrop-filter:blur(12px)}
+.unified-header .brand{display:inline-flex;align-items:center;color:#203848;text-decoration:none;font-size:17px;letter-spacing:0}
+.unified-header .mark{flex:0 0 auto;margin-right:10px;color:#308276}
+.site-navigation{margin-left:auto}
+.site-navigation summary{display:none}
+.site-navigation nav{display:flex;flex-wrap:wrap;gap:4px;font-size:14px}
+.site-navigation nav a{padding:9px 12px;border-radius:8px;color:#526773;text-decoration:none;font-size:14px;white-space:nowrap}
+.site-navigation nav a:hover{background:#f0f5f6;color:#086b61}
+.site-navigation nav a[aria-current="page"]{background:#e6f4ef;color:#086b61;font-weight:700}
+@media(max-width:800px){.unified-header{position:relative;flex-wrap:wrap;padding:10px 14px}.site-navigation{position:relative;margin-left:auto}.site-navigation summary{display:list-item;padding:8px 12px;border:1px solid #dce5e9;border-radius:8px;color:#526773;font-size:13px;cursor:pointer;list-style-position:inside}.site-navigation nav{position:absolute;right:0;top:calc(100% + 7px);z-index:30;display:grid;grid-template-columns:repeat(2,minmax(120px,1fr));min-width:270px;padding:8px;border:1px solid #dce5e9;border-radius:12px;background:#fff;box-shadow:0 12px 30px #102c4420}.site-navigation:not([open]) nav{display:none}.site-navigation nav a{padding:10px}}

@@ -46,16 +46,16 @@
       "sha256": "38cdb21cd30cb8c86558708d611b21560ee270441e92720cd92e9da9c8c58e1e"
     },
     {
-      "name": "fixed/style.48fdadfeaafd82c3.css",
+      "name": "fixed/style.bdb333b7576f9b61.css",
       "zone": "fixed",
-      "bytes": 6342,
-      "sha256": "48fdadfeaafd82c38f01eb6e6b34468d68621f687cd0779fa5617b2eb9a8334b"
+      "bytes": 7995,
+      "sha256": "bdb333b7576f9b61ebeaeb28c43dfa30736fb0d039b545ee2ccfeccb54d03a8c"
     },
     {
       "name": "index.html",
       "zone": "shell",
-      "bytes": 12189,
-      "sha256": "da373771d9292682c85c6d87d8a202373d1a824d363cf41bdd3178b4f9fbc1a4"
+      "bytes": 12356,
+      "sha256": "9a7dc84c9585832b23b8ddc15177516b1877e485d3900192aa4965752015b9f4"
     },
     {
       "name": "sp500/fixed/history.320b2598722e4132.json",

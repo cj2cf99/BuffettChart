@@ -1,5 +1,9 @@
 # BuffettChart 接入个人工作台
 
+## 共用主导航
+
+`src/index.html` 与 Stockcheck 独立页共用 myapp 的六入口页头：总览 `/`、待办 `/aim`、事项提醒 `/reminders`、日记 `/diaries`、个股监察 `/stockcheck/`、长期指标 `/buffett/`。当前页通过 `aria-current="page"` 标记。桌面横向菜单在 ≤800px 时切换为原生 details/summary 折叠面板；通用颜色、间距和断点规则见 Cloudflare 仓库 `docs/design/shared-navigation.md`。菜单只改页面壳，不影响指标数据或模型。编辑 `src/index.html` / `src/style.css` 后运行 `npm run build`，不要手改 dist 中哈希 CSS。
+
 当前入口名称为“长期指标”，地址仍 /buffett/。新增独立 SP500 月度两图与日经225预留位；新增公开前缀 sp500/fixed/（哈希历史片段）和 sp500/updates/{current,recent}.json。共享 fixed/ 另有哈希 sp500 与 sp500-app 脚本。缓存及只读边界与下文一致；详见 [长期指标说明](long-term-indicators.md)。下文原“两图”专指巴菲特区块。
 
 `/buffett/` 为独立只读二级页，首页与全站导航可进入；`/buffett` 保留查询参数并 301 到带尾斜杠路径。顶部展示末期数值，正文两张全历史 SVG；浏览器用固定历史和近期数据生成图表和下载文件。
