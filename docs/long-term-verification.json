@@ -1,0 +1,16 @@
+{
+  "verified_on":"2026-10-28",
+  "title":"长期指标",
+  "mount":"/buffett/",
+  "formal_charts":4,
+  "nikkei225_status":"reserved_without_data_or_model",
+  "sp500":{"months":835,"start":"1957-03","end":"2026-09","updated_on":"2026-10-07","original_csv_sha256":"39b0b493e846afee31146aa1c4654668eb04462a1a18fa6be86afb1416a60c60","original_reproduction_zip_sha256":"9fb8940706694713e804fe7d330dcd5eb6338bc916734ad51e8d56ae46b8d321","all_835_reference_rows_checked":true,"derived_values_tolerance":1e-8,"model_tolerance":1e-12,"fixed_months":811,"recent_months":24,"downloaded_snapshot_rows":835},
+  "source_tests_passed":12,
+  "cloudflare_tests_passed":23,
+  "wrangler_dry_run":"passed",
+  "browser":{"four_charts":true,"monthly_and_quarterly_units_distinct":true,"mobile_document_width":375,"mobile_scroll_width":375,"console_warnings_errors":0},
+  "original_python_entry":"not completed: matplotlib missing; JS model and SVG rendering verified instead",
+  "actual_data_refreshed":false,
+  "revision_and_append_tests":"synthetic isolated fixtures only",
+  "production_deployed":false
+}

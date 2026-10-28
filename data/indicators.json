@@ -1,0 +1,11 @@
+{
+  "page_title": "长期指标",
+  "mount": "/buffett/",
+  "timezone": "Asia/Shanghai",
+  "warning_calendar_months": 5,
+  "indicators": [
+    {"id":"buffett","status":"active","frequency":"quarterly","recent_periods":8,"source_root":"data","independent_model":true},
+    {"id":"sp500","status":"active","frequency":"monthly","recent_periods":24,"source_root":"data/sp500","independent_model":true},
+    {"id":"nikkei225","status":"awaiting_verified_source","frequency":null,"recent_periods":null,"source_root":null,"model":null}
+  ]
+}

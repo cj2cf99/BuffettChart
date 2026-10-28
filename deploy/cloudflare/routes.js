@@ -1,6 +1,6 @@
 // BuffettChart read-only subpage. Reuses the existing public/ asset binding.
 export function publicAsset(name) {
-  return name===''||name==='index.html'||/^fixed\/(?:app|chart|series|freshness)\.[a-f0-9]{16}\.js$/.test(name)||/^fixed\/style\.[a-f0-9]{16}\.css$/.test(name)||/^fixed\/(?:history|\d{4}Q[1-4])\.[a-f0-9]{16}\.json$/.test(name)||/^updates\/(?:current|recent)\.json$/.test(name);
+  return name===''||name==='index.html'||/^fixed\/(?:app|chart|series|freshness|sp500|sp500-app)\.[a-f0-9]{16}\.js$/.test(name)||/^fixed\/style\.[a-f0-9]{16}\.css$/.test(name)||/^fixed\/(?:history|\d{4}Q[1-4])\.[a-f0-9]{16}\.json$/.test(name)||/^updates\/(?:current|recent)\.json$/.test(name)||/^sp500\/fixed\/(?:history|\d{4}-\d{2})\.[a-f0-9]{16}\.json$/.test(name)||/^sp500\/updates\/(?:current|recent)\.json$/.test(name);
 }
 export async function handleBuffett(request, env) {
   const url = new URL(request.url);
@@ -16,7 +16,7 @@ export async function handleBuffett(request, env) {
   if (!relative) url.pathname += 'index.html';
   const response = await env.STOCKCHECK_ASSETS.fetch(new Request(url.toString(),request));
   const headers = new Headers(response.headers);
-  headers.set('Cache-Control',relative.startsWith('fixed/')&&response.ok?'private, max-age=31536000, immutable':'private, max-age=0, must-revalidate');
+  headers.set('Cache-Control',(relative.startsWith('fixed/')||relative.includes('/fixed/'))&&response.ok?'private, max-age=31536000, immutable':'private, max-age=0, must-revalidate');
   headers.set('X-Content-Type-Options','nosniff');
   headers.set('Referrer-Policy','strict-origin-when-cross-origin');
   headers.set('X-Frame-Options','SAMEORIGIN');

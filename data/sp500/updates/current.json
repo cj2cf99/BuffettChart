@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "window_months": 24,
+  "fixed_extensions": [],
+  "active": {
+    "file": "updates/snapshots/sp500_monthly_195703_202609_v1.json",
+    "sha256": "e8f72f29c336737c54819f44931818720ab3a661ecd2774f0b88ce0a562a6633"
+  }
+}

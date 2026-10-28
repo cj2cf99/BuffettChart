@@ -9,6 +9,7 @@
     "preview": "node scripts/preview.mjs",
     "integrate": "node scripts/integrate.mjs",
     "data:update": "node scripts/update-data.mjs",
-    "package:update": "node scripts/package-update.mjs"
+    "package:update": "node scripts/package-update.mjs",
+    "sp500:update": "node scripts/sp500.mjs"
   }
 }

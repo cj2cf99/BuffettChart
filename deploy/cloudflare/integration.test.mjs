@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 import {fixture} from './helpers/worker.mjs';
 import {handleBuffett} from '../src/features/buffett/routes.js';
 test('home and global navigation link the Buffett subpage',async()=>{
-  const f=fixture();try{const r=await f.request('/');assert.match(r.text,/href="\/buffett\/"/);assert.match(r.text,/巴菲特指数/);}finally{f.close();}
+  const f=fixture();try{const r=await f.request('/');assert.match(r.text,/href="\/buffett\/"/);assert.match(r.text,/长期指标/);}finally{f.close();}
 });
 test('imported Buffett assets match publication and are reachable only through whitelist',async()=>{
   const manifest=JSON.parse(fs.readFileSync(new URL('../docs/design/buffett/source-manifest.json',import.meta.url)));
@@ -21,5 +21,7 @@ test('imported Buffett assets match publication and are reachable only through w
   assert.match(current.headers.get('Cache-Control'),/must-revalidate/);
   const metadata=await current.json();assert.equal(metadata.recent_window,8);assert.ok(metadata.model.n>=298);
   const recent=await handleBuffett(req('/buffett/updates/recent.json'),env);assert.equal((await recent.json()).values.length,8);
+  const sp=await handleBuffett(req('/buffett/sp500/updates/current.json'),env);assert.equal((await sp.json()).indicator,'sp500');
+  assert.equal((await handleBuffett(req('/buffett/sp500/fixed/spx-v1.csv'),env)).status,404);
   assert.equal((await handleBuffett(req('/buffett'),env)).status,301);
 });

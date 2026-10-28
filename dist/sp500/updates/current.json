@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "indicator": "sp500",
+  "frequency": "monthly",
+  "snapshot_id": "sp500_monthly_195703_202609_v1",
+  "updated_on": "2026-10-07",
+  "data_through": "2026-09",
+  "source": "Multpl / Shiller monthly average price; nominal, excluding dividends",
+  "source_url": "https://www.multpl.com/s-p-500-historical-prices/table/by-month",
+  "source_note": "Recovered original monthly-average snapshot; no live refresh.",
+  "revision_reason": null,
+  "baseline_sha256": "39b0b493e846afee31146aa1c4654668eb04462a1a18fa6be86afb1416a60c60",
+  "window_months": 24,
+  "fixed_through": "2024-09",
+  "fixed": [
+    {
+      "url": "sp500/fixed/history.320b2598722e4132.json",
+      "sha256": "320b2598722e41329ac07c9bf780f043c29e3e476fc25fd9c3390cdb147144ce",
+      "months": 811
+    }
+  ],
+  "recent": {
+    "url": "sp500/updates/recent.json",
+    "sha256": "c26016cdddfcb131ba8bdc66ccd68e7c21eee55650bb79d665852b41bd498b71"
+  },
+  "model": {
+    "n": 835,
+    "a": 3.5470177095235638,
+    "b_per_year": 0.0713763560476028,
+    "sigma_log": 0.2852558379763024,
+    "sigma_ddof": 2
+  },
+  "latest": {
+    "period": "2026-09",
+    "price": 7691.1,
+    "period_end": "2026-09-30",
+    "trend_price": 4952.63211593612,
+    "deviation_pct": 55.293181887108055,
+    "z_score": 1.5429820594504675
+  }
+}

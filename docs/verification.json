@@ -6,13 +6,26 @@
   "snapshot_updated_on": "2026-10-07",
   "data_through": "2026Q2",
   "quarters": 298,
-  "fixed_prefix": {"through": "2024Q2", "quarters": 290},
-  "recent": {"from": "2024Q3", "through": "2026Q2", "quarters": 8},
+  "fixed_prefix": {
+    "through": "2024Q2",
+    "quarters": 290
+  },
+  "recent": {
+    "from": "2024Q3",
+    "through": "2026Q2",
+    "quarters": 8
+  },
   "original_baseline_sha256_verified": true,
   "partitioned_source_rows_equal_original_baseline": true,
   "model_regression_tolerance": 1e-12,
-  "source_tests": {"passed": 9, "failed": 0},
-  "cloudflare_tests": {"passed": 22, "failed": 0},
+  "source_tests": {
+    "passed": 9,
+    "failed": 0
+  },
+  "cloudflare_tests": {
+    "passed": 22,
+    "failed": 0
+  },
   "cloudflare_wrangler_dry_run": "passed",
   "unchanged_build_mtime_preserved": true,
   "second_import_files_changed": 0,
@@ -34,5 +47,7 @@
   "old_source_versions_retained": true,
   "freshness_warning_starts": "2027-03-08T00:00:00+08:00",
   "production_deployed": false,
-  "cloudflare_access_database_kv_changes": false
+  "cloudflare_access_database_kv_changes": false,
+  "scope": "Historical Buffett partition baseline verification",
+  "superseded_by": "long-term-verification.json"
 }
