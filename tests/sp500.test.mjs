@@ -21,7 +21,7 @@ test('monthly browser data and charts keep points distinct from percentage devia
   const raw=renderSP500Chart(model,current,false),detrended=renderSP500Chart(model,current,true);
   assert.match(raw,/标普 500 长期价格/);assert.match(raw,/7691\.10/);assert.ok(!raw.includes('7691.10%'));assert.ok(!raw.includes('冻结历史估计'));
   assert.match(detrended,/55\.29%/);assert.match(raw,/sp500-h-title/);
-  const doc=fs.readFileSync(path.join(root,'dist/index.html'),'utf8');assert.match(doc,/<title>长期指标/);assert.match(doc,/id="nikkei225"/);assert.match(doc,/当前没有日经数据/);
+  const doc=fs.readFileSync(path.join(root,'dist/index.html'),'utf8');assert.match(doc,/<title>长期指标/);assert.match(doc,/id="nikkei225"/);assert.match(doc,/日经 225 月均价格/);assert.doesNotMatch(doc,/当前没有日经数据/);
 });
 test('monthly revisions need acceptance, preserve fixed prices and only change monthly update assets',()=>{
   const dir=fs.mkdtempSync(path.join(root,'work/sp500-test-'));for(const name of ['data','src'])fs.cpSync(path.join(root,name),path.join(dir,name),{recursive:true});

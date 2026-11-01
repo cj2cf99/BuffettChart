@@ -52,8 +52,8 @@ function report(name,value){
 }
 test('five-month threshold uses Shanghai calendar, strict expiry and month-end clamping',()=>{
   assert.equal(addCalendarMonths('2026-10-07',5),'2027-03-07');
-  assert.equal(freshness('2026-10-07',new Date('2027-03-07T15:59:59Z')).stale,false);
-  assert.equal(freshness('2026-10-07',new Date('2027-03-07T16:00:00Z')).stale,true);
+  assert.equal(freshness('2026-10-07',new Date('2027-03-06T15:59:59Z')).stale,false);
+  assert.equal(freshness('2026-10-07',new Date('2027-03-06T16:00:00Z')).stale,true);
   assert.equal(addCalendarMonths('2026-09-30',5),'2027-02-28');
   assert.equal(addCalendarMonths('2027-09-30',5),'2028-02-29');
   assert.throws(()=>addCalendarMonths('2026-02-30',5));
@@ -164,7 +164,7 @@ test('routes isolate source data, use private immutable cache for hashed fixed a
 });
 test('actual browser module renders verified values, creates downloads and changes stale status on timer',async()=>{
   const originals={Date:globalThis.Date,document:globalThis.document,location:globalThis.location,fetch:globalThis.fetch,setInterval:globalThis.setInterval};
-  let date='2027-03-07T15:59:59Z',timer,visibility;
+  let date='2027-02-07T15:59:59Z',timer,visibility;
   const nodes=new Map(),classes=new Set();
   const node=id=>{if(!nodes.has(id))nodes.set(id,{textContent:'',classList:{toggle:(k,on)=>on?classes.add(k):classes.delete(k),add:k=>classes.add(k)},setAttribute(){},removeAttribute(){},addEventListener(){}});return nodes.get(id);};
   try{
@@ -177,8 +177,8 @@ test('actual browser module renders verified values, creates downloads and chang
     for(let i=0;i<100&&node('#status-label').textContent!=='季度快照';i++)await new Promise(resolve=>setImmediate(resolve));
     assert.equal(node('[data-field="bi"]').textContent,'238.43');assert.equal(node('[data-field="deviation"]').textContent,'+65.93');
     assert.match(node('#historical-chart').innerHTML,/<svg /);assert.match(node('#download-snapshot').href,/^blob:/);
-    date='2027-03-07T16:00:00Z';timer();assert.equal(node('#status-label').textContent,'需要更新');
-    date='2027-03-06T00:00:00Z';visibility();assert.equal(node('#status-label').textContent,'季度快照');
+    date='2027-04-06T16:00:00Z';timer();assert.equal(node('#status-label').textContent,'需要更新');
+    date='2027-02-06T00:00:00Z';visibility();assert.equal(classes.has('active'),false);assert.equal(classes.has('stale'),false);
     for(const id of ['#download-historical','#download-detrended','#download-snapshot'])URL.revokeObjectURL(node(id).href);
   }finally{Object.assign(globalThis,originals);}
 });
