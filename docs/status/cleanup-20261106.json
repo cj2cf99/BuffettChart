@@ -1,0 +1,6 @@
+{
+  "date_jst": "2026-11-06T21:23:08.784083+09:00",
+  "scope": "Documentation organization and verified disposable artifacts only; requirements deferred; no feature or production changes.",
+  "deleted": [],
+  "retained": "Databases, credentials, research, original assets, release evidence, dependencies, Git worktrees and nested test repositories retained."
+}
